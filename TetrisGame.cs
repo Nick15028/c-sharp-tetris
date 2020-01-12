@@ -15,9 +15,9 @@ namespace Tetris
 {
 	public class TetrisGame
 	{
-		public Figure NextFigure;
-		
-		private int score;
+		public Figure NextFigure, NextFigure2;
+
+		private int score, score2;
 		public int Score
 		{
 			get { return score; }
@@ -27,8 +27,18 @@ namespace Tetris
 				OnStateChanged();
 			}
 		}
-		
-		private int figDropped;
+        public int Score2
+        {
+            get { return score2; }
+            set
+            {
+                score2 = value;
+                OnStateChanged();
+            }
+        }
+
+
+        private int figDropped, figDropped2;
 		public int FiguresDropped
 		{
 			get { return figDropped; }
@@ -38,8 +48,18 @@ namespace Tetris
 				OnStateChanged();
 			}
 		}
-		
-		private bool gameOver, paused, figChanged;
+        public int FiguresDropped2
+        {
+            get { return figDropped2; }
+            set
+            {
+                figDropped2 = value;
+                OnStateChanged();
+            }
+        }
+
+
+        private bool gameOver, paused, figChanged, figChanged2;
 		public bool GameOver
 		{
 			get { return gameOver; }
@@ -77,23 +97,37 @@ namespace Tetris
 				OnStateChanged();
 			}
 		}
-		
-		public DateTime GameStarted, GamePaused;
+
+        public bool FigureChanged2
+        {
+            get { return figChanged2; }
+            set
+            {
+                figChanged2 = value;
+                OnStateChanged();
+            }
+        }
+
+        public DateTime GameStarted, GamePaused;
 		
 		
 		/// <summary>
-		/// Создаёт новый экземпляр TetrisGame, готовый к началу игры
+		/// 建構子
 		/// </summary>
 		public TetrisGame()
 		{
-			Score=0; FiguresDropped=0;
-			NextFigure=Figure.RandomFigure();
-			GameOver=false; Paused=false; FigureChanged=false;
-			GameStarted=DateTime.Now;
+			Score = 0; FiguresDropped=0;
+            Score2 = 0; FiguresDropped2 = 0;
+            NextFigure =Figure.RandomFigure();
+            NextFigure2= Figure.RandomFigure();
+            GameOver =false; Paused=false; 
+            FigureChanged=false; FigureChanged2 = false;
+
+            GameStarted =DateTime.Now;
 		}
 		
 		/// <summary>
-		/// Завершает игру
+		/// Ends the game
 		/// </summary>
 		public void Over()
 		{

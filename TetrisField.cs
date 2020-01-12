@@ -18,9 +18,9 @@ namespace Tetris
 		public int TilesWidth { get; private set; }
 		public int TilesHeight { get; private set; }
 		
-		private TileType[,] Tiles;
+		private TileType[,] Tiles;//通常為4*4，用來作為放方塊的板
 		
-		public Color BackColor, BorderColor;
+		public Color BackColor, BorderColor; //drawing
 		
 		public TileType this[int row, int col]
 		{
@@ -39,7 +39,7 @@ namespace Tetris
 		
 		
 		public TetrisField(int height, int width)
-		{
+		{   
 			TilesWidth=width;
 			TilesHeight=height;
 			Tiles=new TileType[height, width];
@@ -57,7 +57,7 @@ namespace Tetris
 		}
 		
 		
-//=========[ МОДИФИКАЦИИ ЯЧЕЕК ]===
+//=========[ MODIFICATIONS OF CELLS ]===
 		
 		public bool SetCell(int row, int col, TileType type)
 		{
@@ -73,13 +73,13 @@ namespace Tetris
 		}
 		
 		/// <summary>
-		/// Помещает фигуру f на поле
+		/// Places the figure f on the field
 		/// </summary>
-		/// <returns>Количество клеток фигуры, которое удалось поместить на поле</returns>
+		/// <returns>The number of cells in the figure that could be placed on the field</returns>
 		public int SetFigure(Figure f, bool rewrite)
 		{
 			
-			int res=4;
+			int res=4; //用來計算可以使用的cell有幾個
 			try
 			{
 				if(Tiles[f.YC, f.XC]==TileType.Empty || rewrite)
@@ -147,30 +147,30 @@ namespace Tetris
 		}
 		
 		/// <summary>
-		/// Осуществляет сдвиг выбранной ячейки вниз, если это возможно
+		/// Moves the selected cell down, if possible.
 		/// </summary>
-		/// <param name="row">Строка</param>
-		/// <param name="col">Столбец</param>
-		/// <returns>Возможность дальнейшего сдвига</returns>
+		/// <param name="row">Line</param>
+		/// <param name="col">Column</param>
+		/// <returns>Possibility of further shift</returns>
 		protected bool MoveDown(int row, int col)
 		{
 			if(Tiles[row, col]!=TileType.Empty)
 			{
-				TileType below=Tiles[row+1, col];
+				TileType below=Tiles[row+1, col];//cell(row, col)向下一格
 				if(below==TileType.Empty)
 				{
 					Tiles[row+1, col]=Tiles[row, col];
-					Tiles[row, col]=TileType.Empty;
+					Tiles[row, col]=TileType.Empty;//原cell(row, col)設為TileType.Empty
 				}
 				return Tiles[row+2, col]==TileType.Empty; //Still can move it down
 			}
 			return false;
 		}
 		/// <summary>
-		/// Передвигает совокупность ячеек вниз
+		/// Moves a collection of cells down
 		/// </summary>
-		/// <param name="f">Фигура - совокупность ячеек</param>
-		/// <returns>Успех сдвига</returns>
+		/// <param name="f">Figure - a collection of cells</param>
+		/// <returns>Success shift</returns>
 		protected bool MoveDown(Figure f)
 		{
 			Figure lower=f.MoveDown();
@@ -180,13 +180,13 @@ namespace Tetris
 			
 			if(IsEmpty(lower))
 			{
-				// свободно, двигаем вниз
+				// free, move down
 				SetFigure(lower, false);
 				return true;
 			}
 			else
 			{
-				// занято, останавливаем
+				// busy stop
 				f.Type=lower.Type;
 				SetFigure(f, false);
 				return false;
@@ -225,30 +225,30 @@ namespace Tetris
 		}
 		
 		/// <summary>
-		/// Осуществляет сдвиг выбранной ячейки вправо, если это возможно
+		/// Moves the selected cell to the right, if possible.
 		/// </summary>
-		/// <param name="row">Строка</param>
-		/// <param name="col">Столбец</param>
-		/// <returns>Возможность дальнейшего сдвига</returns>
+		/// <param name="row">Line</param>
+		/// <param name="col">Column</param>
+		/// <returns>Possibility of further shift</returns>
 		protected bool MoveRight(int row, int col)
 		{
 			if(Tiles[row, col]!=TileType.Empty)
 			{
-				TileType below=Tiles[row, col+1];
+				TileType below=Tiles[row, col+1];//cell(row, col)向右一格
 				if(below==TileType.Empty)
 				{
 					Tiles[row, col+1]=Tiles[row, col];
-					Tiles[row, col]=TileType.Empty;
+					Tiles[row, col]=TileType.Empty;//原cell(row, col)設為TileType.Empty
 				}
 				return Tiles[row, col+1]==TileType.Empty; //Still can move it right
 			}
 			return false;
 		}
 		/// <summary>
-		/// Передвигает совокупность ячеек вправо
+		/// Moves a set of cells to the right
 		/// </summary>
-		/// <param name="f">Фигура - совокупность ячеек</param>
-		/// <returns>Успешность сдвига</returns>
+		/// <param name="f">Figure - a collection of cells</param>
+		/// <returns>Shift Success</returns>
 		protected bool MoveRight(Figure f)
 		{
 			Figure moved=f.MoveRight();
@@ -276,11 +276,11 @@ namespace Tetris
 
 
 		/// <summary>
-		/// Осуществляет сдвиг выбранной ячейки влево, если это возможно
+		/// Moves the selected cell to the left, if possible.
 		/// </summary>
-		/// <param name="row">Строка</param>
-		/// <param name="col">Столбец</param>
-		/// <returns>Возможность дальнейшего сдвига</returns>
+		/// <param name="row">Line</param>
+		/// <param name="col">Column</param>
+		/// <returns>Possibility of further shift</returns>
 		protected bool MoveLeft(int row, int col)
 		{
 			if(Tiles[row, col]!=TileType.Empty)
@@ -296,10 +296,10 @@ namespace Tetris
 			return false;
 		}
 		/// <summary>
-		/// Передвигает совокупность ячеек влево
+		/// Moves a set of cells to the left.
 		/// </summary>
-		/// <param name="f">Фигура - совокупность ячеек</param>
-		/// <returns>Успешность сдвига</returns>
+		/// <param name="f">Figure - a collection of cells</param>
+		/// <returns>Shift Success</returns>
 		protected bool MoveLeft(Figure f)
 		{
 			Figure moved=f.MoveLeft();
@@ -337,40 +337,39 @@ namespace Tetris
 				SetFigure(rotated, false);
 				return rotated;
 			}
-			//неудача, фигура наткнулась на препятствие, нужно сместить её
-			//вниз
+			//failure, the figure came across an obstacle, you need to move it down
 			rotated2=rotated.MoveDown();
 			if(IsEmpty(rotated2))
 			{
 				SetFigure(rotated2, false);
 				return rotated2;
 			}
-			//вправо
+			//to the right
 			rotated2=rotated.MoveRight();
 			if(IsEmpty(rotated2))
 			{
 				SetFigure(rotated2, false);
 				return rotated2;
 			}
-			//влево
+			//to the left
 			rotated2=rotated.MoveLeft();
 			if(IsEmpty(rotated2))
 			{
 				SetFigure(rotated2, false);
 				return rotated2;
 			}
-			//тотальная неудача, я сдаюсь
+			//total failure, i give up
 			SetFigure(f, false);
 			return Figure.Zero;
 		}
 		
 		/// <summary>
-		/// Удаляет заполненные ряды и поля со смещением всех лежащих выше вниз
+		/// Deletes filled rows and fields with a shift of all higher ones down
 		/// </summary>
-		/// <returns>Количество уничтоженных ячеек</returns>
+		/// <returns>The number of cells destroyed</returns>
 		public int RemoveFullRows()
 		{
-			//Список заполненных рядов к удалению
+			//List of filled rows to delete
 			List<int> FullRows=new List<int>();
 			
 			for(int row=0; row<TilesHeight; row++)
@@ -390,22 +389,22 @@ namespace Tetris
 				}
 			}
 			
-			//Удаляем со смещением всех остальных рядов вниз
+			//Delete with the shift of all other rows down
 			foreach(int frow in FullRows)
 			{
 				for(int row=frow-1; row>0; row--)
 				{
-					//смещаем [row]->[row+1]
+					//shift [row]->[row+1]
 					for(int col=0; col<TilesWidth; col++)
 					{
 						Tiles[row+1, col]=Tiles[row, col];
-						if(IsRowEmpty(row+1)) //прошлый ряд пуст, следовательно, все выше лежащие так же пусты
+						if(IsRowEmpty(row+1)) //the last row is empty, therefore, all those above are also empty
 							break;
 					}
 				}
 			}
 			
-			return TilesWidth*FullRows.Count; //возвращаем количество уничтоженных клеток
+			return TilesWidth*FullRows.Count; //return the number of destroyed cells
 		}
 		
 		private bool IsRowEmpty(int row)
@@ -430,7 +429,7 @@ namespace Tetris
 		}
 		
 		
-//=========[ ОТРИСОВКА ]===
+//=========[ DRAWING ]========
 		public const int TileSide=20;
 		
 		public virtual void Paint(Graphics g)
@@ -476,20 +475,12 @@ namespace Tetris
 							if(LightBlue==null) g.FillRectangle(Brushes.LightBlue, tile);
 							else g.DrawImage(LightBlue, tile);
 							break;
-                        case TileType.Black:
-                            if (Black == null) g.FillRectangle(Brushes.Black, tile);
-                            else g.DrawImage(Black, tile);
-                            break;
-                        case TileType.Pink:
-                            if (Pink == null) g.FillRectangle(Brushes.Pink, tile);
-                            else g.DrawImage(Pink, tile);
-                            break;
-                    }
+					}
 				}
 			}
 		}
-//=========[ КАРТИНКИ ]===
-		public static Bitmap Red, Green, Blue, Yellow, Orange, Purple, LightBlue, Black, Pink;
+//=========[ IMAGES ]=========
+		public static Bitmap Red, Green, Blue, Yellow, Orange, Purple, LightBlue;
 	}
 	
 	
@@ -497,7 +488,7 @@ namespace Tetris
 	{
 		public Figure Current;
 		/// <summary>
-		/// Если текущая фигура упала и можно добавлять новую, имеет значение false
+		/// If the current shape has fallen and you can add a new one, false
 		/// </summary>
 		public bool IsFigureFalling { get; private set; }
 		public bool ShowTips;
@@ -512,10 +503,10 @@ namespace Tetris
 		
 		
 		/// <summary>
-		/// Помещает новую фигуру на верх поля
+		/// Puts a new shape on top of the field
 		/// </summary>
-		/// <param name="f">Новая фигура</param>
-		/// <returns>true, если фигуру удалось полностью поместить на поле, иначе - false</returns>
+		/// <param name="f">New figure</param>
+		/// <returns>true, if the figure was completely placed on the field, otherwise - false</returns>
 		public bool PlaceFigure(Figure f)
 		{
 			f=f.MoveTo(0, TilesWidth/2-1);
@@ -528,10 +519,10 @@ namespace Tetris
 		}
 		
 		/// <summary>
-		/// Заменяет текущую фигуру на новую
+		/// Replaces the current shape with a new one
 		/// </summary>
-		/// <param name="nfig">Новая фигура</param>
-		/// <returns>Предыдущую фигуру или Figure.Zero, если новую фигуру не удалось поместить</returns>
+		/// <param name="nfig">New figure</param>
+		/// <returns>The previous figure or Figure.Zero if the new figure could not be placed</returns>
 		public Figure ChangeFigure(Figure nfig)
 		{
 			if(Current==Figure.Zero) return Current;
@@ -543,9 +534,9 @@ namespace Tetris
 		}
 		
 		/// <summary>
-		/// Поворачивает текущую фигуру по часовой стрелке
+		/// Rotates the current shape clockwise
 		/// </summary>
-		/// <returns>true в случае успеха и false - в случае неудачи</returns>
+		/// <returns>true in case of success and false - in case of failure</returns>
 		public bool RotateFigure()
 		{
 			if(Current==Figure.Zero) return false;
@@ -558,9 +549,9 @@ namespace Tetris
 			return false;
 		}
 		/// <summary>
-		/// Смещает фигуру влево
+		/// Shifts the figure to the left.
 		/// </summary>
-		/// <returns>true в случае успеха и false - в случае неудачи</returns>
+		/// <returns>true in case of success and false - in case of failure</returns>
 		public bool MoveLeft()
 		{
 			if(Current==Figure.Zero) return false;
@@ -572,9 +563,9 @@ namespace Tetris
 			return false;
 		}
 		/// <summary>
-		/// Смещает фигуру вправо
+		/// Shifts the figure to the right.
 		/// </summary>
-		/// <returns>true в случае успеха и false - в случае неудачи</returns>
+		/// <returns>true in case of success and false - in case of failure</returns>
 		public bool MoveRight()
 		{
 			if(Current==Figure.Zero) return false;
@@ -586,9 +577,9 @@ namespace Tetris
 			return false;
 		}
 		/// <summary>
-		/// Смещает фигуру вниз
+		/// Shifts the figure down
 		/// </summary>
-		/// <returns>true в случае успеха и false - в случае неудачи</returns>
+		/// <returns>true if successful and false if not successful</returns>
 		public bool MoveDown()
 		{
 			if(Current==Figure.Zero) return false;
@@ -600,9 +591,9 @@ namespace Tetris
 			return false;
 		}
 		/// <summary>
-		/// Смещает фигуру вниз до предела
+		/// Shifts the figure down to the limit
 		/// </summary>
-		/// <returns>true в случае успеха и false - в случае неудачи</returns>
+		/// <returns>true if successful and false if not successful</returns>
 		public bool Drop()
 		{
 			if(Current==Figure.Zero) return false;
@@ -615,20 +606,20 @@ namespace Tetris
 		{
 			if(Current!=Figure.Zero)
 			{
-				IsFigureFalling=MoveDown(Current);	//пытаемся сдвинуть вниз
-				if(IsFigureFalling)	//успех?
+				IsFigureFalling=MoveDown(Current);	//trying to push down
+				if(IsFigureFalling)	//success?
 				{
-					Current=Current.MoveDown(); // да, передвигаем указатель
+					Current=Current.MoveDown(); // yes, move the pointer
 				}
 				else
-					Current=Figure.Zero; //нет, двигать больше некуда, фигура опустилась
+					Current=Figure.Zero; //no, nowhere else to move, the figure sank
 			}
 			else
 				IsFigureFalling=false;
 		}
 		
 		/// <summary>
-		/// Очищает игровое поле
+		/// Clears the playing field
 		/// </summary>
 		public override void Clear()
 		{
@@ -645,17 +636,17 @@ namespace Tetris
 			if(ShowTips && IsFigureFalling)
 			{
 				Figure tip=Current;
-				//временно удаляем текущую фигуру, потом всё вернём
+				//temporarily delete the current shape, then return everything
 				EraseFigure(Current);
 				
-				while(IsEmpty(tip)) //смещаем ниже, пока не натолкнёмся на препятствие
+				while(IsEmpty(tip)) //move lower until we run into an obstacle
 				{
 					tip=tip.MoveDown();
 				}
-				//натолкнулись, надо фигуру в последнее свободное место (оно выше)
+				//stumbled, you need a figure in the last free place (it is higher)
 				tip=tip.MoveUp();
 				
-				//возвращаем, как и обещалось
+				//return, as promised
 				SetFigure(Current, false);
 				
 				Point[] cells=new Point[]
@@ -680,7 +671,7 @@ namespace Tetris
 	
 	public struct Figure
 	{
-		//ячейки фигуры
+		//cell shapes
 		public int XC { get; private set; }
 		public int YC { get; private set; }
 		
@@ -705,7 +696,7 @@ namespace Tetris
 			YC=0;
 			switch(type)
 			{
-				//создаём форму фигуры согласно её цвету
+				//create the shape of the shape according to its color
 				case TileType.Blue: // I
 					X1=XC-1; X2=XC+1; X3=XC+2;
 					Y1=YC; Y2=YC; Y3=YC;
@@ -731,18 +722,10 @@ namespace Tetris
 					Y1=YC+1; Y2=YC+1; Y3=YC;
 					break;
 				case TileType.Yellow: // [ ]
-                    X1 = XC + 1; X2 = XC; X3 = XC + 1;
-                    Y1 = YC; Y2 = YC + 1; Y3 = YC + 1;
+					X1=XC+1; X2=XC; X3=XC+1;
+					Y1=YC; Y2=YC+1; Y3=YC+1;
 					break;
-                case TileType.Black: //new
-                    X1 = XC + 1; X2 = XC - 1; X3 = XC - 1;
-                    Y1 = YC + 1; Y2 = YC; Y3 = YC + 1;
-                    break;
-                case TileType.Pink: //new
-                    X1 = XC + 1; X2 = XC - 1; X3 = XC +1;
-                    Y1 = YC; Y2 = YC+1; Y3 = YC + 1;
-                    break;
-                case TileType.Empty: // zero
+				case TileType.Empty: // zero
 					X3=X2=X1=XC=0;
 					Y3=Y2=Y1=YC=0;
 					break;
@@ -754,44 +737,44 @@ namespace Tetris
 		}
 		
 		/// <summary>
-		/// Смещает фигуру вниз
+		/// Shifts the figure down
 		/// </summary>
-		/// <returns>Смещённую фигуру</returns>
+		/// <returns>Displaced figure</returns>
 		public Figure MoveDown()
 		{
 			return MoveTo(YC+1, XC);
 		}
 		/// <summary>
-		/// Смещает фигуру вверх
+		/// Shifts the shape up
 		/// </summary>
-		/// <returns>Смещённую фигуру</returns>
+		/// <returns>positioned figure</returns>
 		public Figure MoveUp()
 		{
 			return MoveTo(YC-1, XC);
 		}
 		
 		/// <summary>
-		/// Смещает фигуру вправо
+		/// Shifts the figure to the right.
 		/// </summary>
-		/// <returns>Смещённую фигуру</returns>
+		/// <returns>Displaced figure</returns>
 		public Figure MoveRight()
 		{
 			return MoveTo(YC, XC+1);
 		}
 		
 		/// <summary>
-		/// Смещает фигуру влево
+		/// Shifts the figure to the left.
 		/// </summary>
-		/// <returns>Смещённую фигуру</returns>
+		/// <returns>Displaced figure</returns>
 		public Figure MoveLeft()
 		{
 			return MoveTo(YC, XC-1);
 		}
 		
 		/// <summary>
-		/// Перемещает фигуру в положение x=col, y=row
+		/// Moves the shape to position x=col, y=row
 		/// </summary>
-		/// <returns>Перемещённую фигуру</returns>
+		/// <returns>Moved figure</returns>
 		public Figure MoveTo(int row, int col)
 		{
 			int dx=col-XC, dy=row-YC;
@@ -803,10 +786,10 @@ namespace Tetris
 			return res;
 		}
 		
-//======[ Поворот ]===
+//======[ Turn ]=======
 
-		//формулы для поворота клеток относительно центра
-		//(немного математики)
+		//formulas for the rotation of cells relative to the center
+		//(some math)
 		private int RotateCol(int col)
 		{
 			return YC-XC+col;
@@ -817,9 +800,9 @@ namespace Tetris
 		}
 
 		/// <summary>
-		/// Осуществляет поворот фигуры по часовой стрелке на 90 градусов
+		/// Rotates a figure clockwise 90 degrees
 		/// </summary>
-		/// <returns>Повёрнутую фигуру</returns>
+		/// <returns>Rotated figure</returns>
 		public Figure Rotate()
 		{
 			Figure res=Clone();
@@ -851,13 +834,13 @@ namespace Tetris
 		
 		private static Random rnd=new Random();
 		/// <summary>
-		/// Возвращает случайную фигуру
+		/// Returns a random shape
 		/// </summary>
 		public static Figure RandomFigure()
 		{
-			return new Figure((TileType)rnd.Next(1, 10));
+			return new Figure((TileType)rnd.Next(1, 8));
 		}
 	}
 	
-	public enum TileType { Empty, Red, Green, Blue, Yellow, Orange, Purple, LightBlue, Black, Pink, Wall }
+	public enum TileType { Empty, Red, Green, Blue, Yellow, Orange, Purple, LightBlue, Wall }
 }

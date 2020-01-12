@@ -13,7 +13,7 @@ using System.Windows.Forms;
 namespace Tetris
 {
 	/// <summary>
-	/// Форма ввода имени пользователя
+	/// Username input form
 	/// </summary>
 	public partial class NewRecordDialog : Form
 	{

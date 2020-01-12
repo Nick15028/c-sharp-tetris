@@ -10,19 +10,17 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Resources;
-using System.Threading;
 using System.Windows.Forms;
-
 
 namespace Tetris
 {
 	/// <summary>
-	/// Главная форма
+	/// Main form
 	/// </summary>
 	public partial class MainForm : Form
 	{
-		private GameField GF;
-		private TetrisField Preview;
+		private GameField GF, GF2;
+		private TetrisField Preview, Preview2;
 		private TetrisGame Game;
 		
 		private NewRecordDialog NRDialog;
@@ -33,21 +31,25 @@ namespace Tetris
 		
 		public MainForm()
 		{
-            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
 			Game=new TetrisGame();
 			Game.Score=0; Game.GameOver=true;
+            Game.Score2 = 0;
 			
 			Saver.Load();
 			
 			GF=new GameField(18, 12);
-			
-			Preview=new TetrisField(4, 4);
+            GF2 = new GameField(18, 12);/////
+
+            Preview =new TetrisField(4, 4);
 			Preview.BorderColor=Preview.BackColor;
-			
-			Random rnd=new Random();
-			
-			// Типа сплэш
-			for(int row=0; row<GF.TilesHeight; row++)
+
+            Preview2 = new TetrisField(4, 4);
+            Preview2.BorderColor = Preview2.BackColor;
+
+            Random rnd=new Random();
+
+            // Type splash
+            for (int row=0; row<GF.TilesHeight; row++)
 			{
 				for(int col=0; col<GF.TilesWidth; col++)
 				{
@@ -55,8 +57,19 @@ namespace Tetris
 					GF.SetCell(row, col, t);
 				}
 			}
-			
-			Game.StateChanged+=new EventHandler(Game_StateChanged);
+
+            //
+            for (int row = 0; row < GF2.TilesHeight; row++)
+            {
+                for (int col = 0; col < GF2.TilesWidth; col++)
+                {
+                    TileType t = (TileType)rnd.Next(0, 7);
+                    GF2.SetCell(row, col, t);
+                }
+            }
+            //
+
+            Game.StateChanged+=new EventHandler(Game_StateChanged);
 			
 			InitializeComponent();
 			
@@ -65,9 +78,12 @@ namespace Tetris
 		void Game_StateChanged(object sender, EventArgs e)
 		{
 			ScoreLabel.Text=Game.Score.ToString();
-			FiguresLabel.Text=Game.FiguresDropped.ToString();
-			ElapsedTimeLabel.Text=(DateTime.Now-Game.GameStarted).ToString();
-			Refresh();
+            ScoreLabel2.Text = Game.Score2.ToString();
+            FiguresLabel.Text=Game.FiguresDropped.ToString();
+            FiguresLabel2.Text = Game.FiguresDropped2.ToString();
+            ElapsedTimeLabel.Text=(DateTime.Now-Game.GameStarted).ToString();
+            ElapsedTimeLabel2.Text = (DateTime.Now - Game.GameStarted).ToString();
+            Refresh();
 		}
 		
 		private void SetScore(int nscore)
@@ -75,21 +91,30 @@ namespace Tetris
 			Game.Score=nscore;
 			//ScoreLabel.Text=Score.ToString();
 		}
-		
-		private void NewGame()
+
+        private void SetScore2(int nscore)
+        {
+            Game.Score2 = nscore;
+            //ScoreLabel.Text=Score.ToString();
+        }
+
+        private void NewGame()
 		{
 			Game=new TetrisGame();
 			Game.StateChanged+= new EventHandler(Game_StateChanged);
 			SetScore(0);
-			
-			GameTimer.Interval=1000;
+            SetScore2(0);
+
+            GameTimer.Interval=700;
 			GameTimer.Enabled=true;
 			
 			Game.NextFigure=Figure.RandomFigure();
-			
-			GF.Clear();
-			
-			Refresh();
+            Game.NextFigure2 = Figure.RandomFigure();
+
+            GF.Clear();
+            GF2.Clear();////////
+
+            Refresh();
 		}
 		
 		private void SetPause(bool enable)
@@ -102,21 +127,22 @@ namespace Tetris
 			//Refresh();
 		}
 		
-		// Игровой цикл
+		// Game cycle
 		void GameTimerTick(object sender, EventArgs e)
 		{
 			if(Game.Paused) return;
 			
 			GF.DoStep();
-			
-			if(!GF.IsFigureFalling) 
+            GF2.DoStep();///////
+
+            if (!GF.IsFigureFalling) 
 			{
-				//нужно поместить новую фигуру на поле и скрыть полные ряды
+				//you need to put a new figure on the field and hide the full rows
 				SetScore(Game.Score+GF.RemoveFullRows()*10);
 				
 				if(!GF.PlaceFigure(Game.NextFigure))
 				{
-					//игра окончена
+					//game over
 					OnGameOver();
 				}
 				else
@@ -128,7 +154,7 @@ namespace Tetris
 					Preview.SetFigure(Game.NextFigure.MoveTo(1, 1), false);
 					
 					if(Game.FigureChanged && Game.FiguresDropped%5==0) Game.FigureChanged=false;
-					//ускоряем игру при росте количества очков
+					//speed up the game with increasing points
 					if(Game.FiguresDropped%15==0 && Game.Score!=0)
 					{
 						if(GameTimer.Interval>300)
@@ -142,18 +168,64 @@ namespace Tetris
 					ShowAdvice();
 				}
 			}
-			ElapsedTimeLabel.Text=(DateTime.Now-Game.GameStarted).ToString(@"mm\:ss");
-			
-			Refresh();
+
+            //
+            if (!GF2.IsFigureFalling)
+            {
+                //you need to put a new figure on the field and hide the full rows
+                SetScore2(Game.Score2 + GF2.RemoveFullRows() * 10);
+
+                if (!GF2.PlaceFigure(Game.NextFigure2))
+                {
+                    //game over
+                    OnGameOver();
+                }
+                else
+                {
+                    Game.NextFigure2 = Figure.RandomFigure();
+                    Game.FiguresDropped2++;
+                    FiguresLabel2.Text = Game.FiguresDropped2.ToString();
+                    Preview2.Clear();
+                    Preview2.SetFigure(Game.NextFigure2.MoveTo(1, 1), false);
+
+                    if (Game.FigureChanged2 && Game.FiguresDropped2 % 5 == 0) Game.FigureChanged2 = false;
+                    //speed up the game with increasing points
+                    if (Game.FiguresDropped2 % 15 == 0 && Game.Score2 != 0)
+                    {
+                        if (GameTimer.Interval > 300)
+                        {
+                            //GameTimer.Enabled=false;
+                            GameTimer.Interval -= 100;
+                            //GameTimer.Enabled=true;
+                        }
+                    }
+
+                    ShowAdvice2();
+                }
+            }//
+
+
+            ElapsedTimeLabel.Text=(DateTime.Now-Game.GameStarted).ToString(@"mm\:ss");
+            ElapsedTimeLabel2.Text = (DateTime.Now - Game.GameStarted).ToString(@"mm\:ss");
+
+            Refresh();
 		}
 		
 		private void OnGameOver()
 		{
 			Game.Over();
 			GameTimer.Enabled=false;
-			
-			TetrisSave test=new TetrisSave("---", Game.Score, DateTime.Now-Game.GameStarted);
-			
+
+            TetrisSave test;
+            if (Game.Score>Game.Score2)
+            {
+                test = new TetrisSave("---", Game.Score, DateTime.Now - Game.GameStarted);//////////////////////
+            }
+            else//Game.Score<=Game.Score2
+            {
+                test = new TetrisSave("---", Game.Score2, DateTime.Now - Game.GameStarted);//////////////////////
+            }
+                
 			if(Saver.HighScores.CanAdd(test) || Saver.HighTimes.CanAdd(test))
 			{
 				NRDialog=new NewRecordDialog();
@@ -172,14 +244,14 @@ namespace Tetris
 		}
 		
 		private static string[] Advices=new string[]
-        {
-            "Wait until the indicator disappears around the image of the next figure to be able to defer the figure!",
-            "Use the Q key to postpone the shape and use the next",
-            "Along with the number of discarded pieces, the speed of the game grows,",
-            "To get into the high score table, you can either score the most points and stay in the game longer than anyone else,",
-            "Use the F3 key to pause the game,",
+		{
+			"Wait until the indicator disappears around the image of the next figure to be able to postpone the figure!",
+            "Use the magic key to postpone the shape and use the next",
+            "Along with the number of discarded pieces, the speed of the game grows",
+            "To get into the high score table, you can either score the most points and stay in the game longer than anyone else",
+            "Use the F3 key to pause the game",
             "Decided to start a new game? Press F2 to do it immediately!"
-        };
+		};
 		private void ShowAdvice(int advice)
 		{
 			AdviceLabel.Text=Advices[advice];
@@ -188,38 +260,77 @@ namespace Tetris
 		{
 			ShowAdvice(new Random().Next(1, Advices.Length));
 		}
-		
-		// Обработка ввода
-		void MainFormKeyDown(object sender, KeyEventArgs e)
+        private void ShowAdvice2(int advice)
+        {
+            AdviceLabel2.Text = Advices[advice];
+        }
+        private void ShowAdvice2()
+        {
+            ShowAdvice2(new Random().Next(1, Advices.Length));
+        }
+
+        // Input processing
+        void MainFormKeyDown(object sender, KeyEventArgs e)
 		{
 			e.SuppressKeyPress=true;
 			
 			if(Game.GameOver || Game.Paused) return;
 			
-			if(e.KeyData==Keys.Left || e.KeyData==Keys.A)
+			if(e.KeyData==Keys.A)
 			{
 				GF.MoveLeft();
 			}
-			if(e.KeyData==Keys.Right || e.KeyData==Keys.D)
+            if (e.KeyData == Keys.NumPad1)
+            {
+                GF2.MoveLeft();
+            }
+
+
+            if (e.KeyData==Keys.D)
 			{
 				GF.MoveRight();
 			}
-			if(e.KeyData==Keys.Up || e.KeyData==Keys.Space)
+            if (e.KeyData == Keys.NumPad3)
+            {
+                GF2.MoveRight();
+            }
+
+
+            if (e.KeyData==Keys.W)
 			{
 				if(GF.Drop())
 					SetScore(Game.Score+5);
 			}
-			if(e.KeyData==Keys.Down || e.KeyData==Keys.S)
+
+            if (e.KeyData == Keys.NumPad5)
+            {
+                if (GF2.Drop())
+                    SetScore2(Game.Score2 + 5);
+            }
+
+
+            if (e.KeyData==Keys.S)
 			{
 				if(GF.MoveDown())
 					SetScore(Game.Score+1);
 			}
-			if(e.KeyData==Keys.W)
+            if (e.KeyData == Keys.NumPad2)
+            {
+                if (GF2.MoveDown())
+                    SetScore2(Game.Score2 + 1);
+            }
+
+
+            if (e.KeyData==Keys.Space)
 			{
 				GF.RotateFigure();
 			}
-			//儲存此方塊
-			if(e.KeyData==Keys.Q)
+            if (e.KeyData == Keys.Enter)
+            {
+                GF2.RotateFigure();
+            }
+
+            if (e.KeyData==Keys.Q)
 			{
 				if(!Game.FigureChanged && GF.IsFigureFalling)
 				{
@@ -235,12 +346,24 @@ namespace Tetris
 					ShowAdvice(0);
 				}
 			}
-            //暫停
-            if(e.KeyData == Keys.P)
+            if (e.KeyData == Keys.NumPad4)
             {
-                SetPause(!Game.Paused);
+                if (!Game.FigureChanged2 && GF2.IsFigureFalling)
+                {
+                    Game.NextFigure2 = new Figure(GF2.ChangeFigure(Game.NextFigure2).Type);
+                    Preview2.Clear();
+                    Preview2.SetFigure(Game.NextFigure2.MoveTo(1, 1), false);
+                    Game.FigureChanged2 = true;
+                    if (Game.NextFigure2 == Figure.Zero)
+                        OnGameOver();
+                }
+                if (Game.FigureChanged2)
+                {
+                    ShowAdvice2(0);
+                }
             }
-			Refresh();
+
+            Refresh();
 		}
 
 		
@@ -264,8 +387,31 @@ namespace Tetris
 				e.Graphics.DrawImage(GameOverImage, img);
 			}
 		}
-		
-		void НоваяИграToolStripMenuItemClick(object sender, EventArgs e)
+        //
+        private void GameFieldPictureBox2_Paint(object sender, PaintEventArgs e)
+        {
+            GF2.Paint(e.Graphics);
+
+            if (Game.Paused)
+            {
+                Rectangle img = new Rectangle((GameFieldPictureBox2.Width - PausedImage.Width) / 2,
+                                            (GameFieldPictureBox2.Height - PausedImage.Height) / 2,
+                                            PausedImage.Width, PausedImage.Height);
+                e.Graphics.DrawImage(PausedImage, img);
+                return;
+            }
+            if (Game.GameOver)
+            {
+                Rectangle img = new Rectangle((GameFieldPictureBox2.Width - GameOverImage.Width) / 2,
+                                            (GameFieldPictureBox2.Height - GameOverImage.Height) / 2,
+                                            GameOverImage.Width, GameOverImage.Height);
+                e.Graphics.DrawImage(GameOverImage, img);
+            }
+
+        }
+        //
+
+        void НоваяИграToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			NewGame();
 		}
@@ -282,11 +428,11 @@ namespace Tetris
 				TetrisField.LightBlue=new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImLBLUE"));
 				TetrisField.Purple=new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImPURPLE"));
 				TetrisField.Yellow=new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImYELLOW"));
-				TetrisField.Orange=new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImORANGE"));                
-                PausedImage =new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImPAUSE"));
+				TetrisField.Orange=new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImORANGE"));
+				
+				PausedImage=new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImPAUSE"));
 				GameOverImage=new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImGAMEOVER"));
-                
-            }
+			}
 			catch(Exception ex)
 			{
 				MessageBox.Show(ex.Message, "Ошибка при загрузке изображений!");
@@ -300,8 +446,14 @@ namespace Tetris
 			Preview.BorderColor=Game.FigureChanged? Color.FromArgb(160, 128, 128) : Preview.BackColor;
 			Preview.Paint(e.Graphics);
 		}
-		
-		void TipsCheckBoxCheckedChanged(object sender, EventArgs e)
+
+        private void NextFigurePictureBox2_Paint(object sender, PaintEventArgs e)
+        {
+            Preview2.BorderColor = Game.FigureChanged2 ? Color.FromArgb(160, 128, 128) : Preview2.BackColor;
+            Preview2.Paint(e.Graphics);
+        }
+
+        void TipsCheckBoxCheckedChanged(object sender, EventArgs e)
 		{
 			GF.ShowTips=TipsCheckBox.Checked;
 		}
@@ -315,35 +467,24 @@ namespace Tetris
 		{
 			Close();
 		}
-		
-		void ТаблицаРекордовToolStripMenuItemClick(object sender, EventArgs e)
+
+        
+
+        void ТаблицаРекордовToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			RForm=new RecordsForm(new TetrisSave());
 			if(RForm.ShowDialog()==DialogResult.OK && Game.GameOver)
 				NewGame();
 		}
-		
-		void ОбИгреToolStripMenuItemClick(object sender, EventArgs e)
+
+       
+
+        void ОбИгреToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			new AboutDialog().ShowDialog();
 		}
-
-        private void EnglishToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
-            this.Controls.Clear();
-            InitializeComponent();
-        }
-
-        private void ChineseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("zh-TW");
-            this.Controls.Clear();
-            InitializeComponent();
-        }
-
-
-        void ПравилаToolStripMenuItemClick(object sender, EventArgs e)
+		
+		void ПравилаToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			try
 			{
@@ -364,3 +505,7 @@ namespace Tetris
 		}
 	}
 }
+
+/////////////Magic Power///////////////
+
+

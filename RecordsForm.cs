@@ -4,7 +4,7 @@
  * Дата: 31.10.2013
  * Время: 18:59
  * 
- * Для изменения этого шаблона используйте Сервис | Настройка | Кодирование | Правка стандартных заголовков.
+ * To change this template, use Tools | Customization | Coding | Edit standard headers.
  */
 using System;
 using System.Drawing;
@@ -13,7 +13,7 @@ using System.Windows.Forms;
 namespace Tetris
 {
 	/// <summary>
-	/// Форма для отображения списка рекордов
+	/// Form for displaying the list of records
 	/// </summary>
 	public partial class RecordsForm : Form
 	{
@@ -57,10 +57,7 @@ namespace Tetris
 			DialogResult=DialogResult.Cancel;			
 		}
 		
-		void Label2Click(object sender, EventArgs e)
-		{
-			
-		}
+
 	}
 	
 	public class TSLVItem : ListViewItem //Tetris save list view item

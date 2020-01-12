@@ -13,7 +13,7 @@ using System.Windows.Forms;
 namespace Tetris
 {
 	/// <summary>
-	/// Диалог "О программе"
+	/// Dialog "About the program"
 	/// </summary>
 	public partial class AboutDialog : Form
 	{
@@ -35,8 +35,8 @@ namespace Tetris
 			}
 			catch
 			{
-				MessageBox.Show("Ваша упоротая ОС не смогла открыть ссылку -_-",
-				                "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show("Your rotten OS was unable to open the link -_-",
+				                "Mistake!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
 		
@@ -48,11 +48,9 @@ namespace Tetris
 			}
 			catch
 			{
-				MessageBox.Show("Ваша упоротая ОС не смогла открыть ссылку -_-",
-				                "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show("Your rotten OS was unable to open the link -_-",
+				                "Mistake!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
-
-
-    }
+	}
 }
