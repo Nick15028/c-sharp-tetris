@@ -52,5 +52,7 @@ namespace Tetris
 				                "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
 			}
 		}
-	}
+
+
+    }
 }

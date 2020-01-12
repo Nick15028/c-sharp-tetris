@@ -32,3 +32,5 @@ C:\Users\User\Desktop\oop\c-sharp-tetris\obj\Debug\Tetris.RecordsForm.en-US.reso
 C:\Users\User\Desktop\oop\c-sharp-tetris\obj\Debug\Tetris.RecordsForm.ru.resources
 C:\Users\User\Desktop\oop\c-sharp-tetris\obj\Debug\ru\Tetris.resources.dll
 C:\Users\User\Desktop\oop\c-sharp-tetris\obj\Debug\Tetris.RecordsForm.zh-TW.resources
+C:\Users\User\Desktop\oop\c-sharp-tetris\obj\Debug\Tetris.AboutDialog.en-US.resources
+C:\Users\User\Desktop\oop\c-sharp-tetris\obj\Debug\Tetris.AboutDialog.zh-TW.resources
