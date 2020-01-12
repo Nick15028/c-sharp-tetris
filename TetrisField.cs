@@ -476,12 +476,20 @@ namespace Tetris
 							if(LightBlue==null) g.FillRectangle(Brushes.LightBlue, tile);
 							else g.DrawImage(LightBlue, tile);
 							break;
-					}
+                        case TileType.Black:
+                            if (Black == null) g.FillRectangle(Brushes.Black, tile);
+                            else g.DrawImage(Black, tile);
+                            break;
+                        case TileType.Pink:
+                            if (Pink == null) g.FillRectangle(Brushes.Pink, tile);
+                            else g.DrawImage(Pink, tile);
+                            break;
+                    }
 				}
 			}
 		}
 //=========[ КАРТИНКИ ]===
-		public static Bitmap Red, Green, Blue, Yellow, Orange, Purple, LightBlue;
+		public static Bitmap Red, Green, Blue, Yellow, Orange, Purple, LightBlue, Black, Pink;
 	}
 	
 	
@@ -723,10 +731,18 @@ namespace Tetris
 					Y1=YC+1; Y2=YC+1; Y3=YC;
 					break;
 				case TileType.Yellow: // [ ]
-					X1=XC+1; X2=XC; X3=XC+1;
-					Y1=YC; Y2=YC+1; Y3=YC+1;
+                    X1 = XC + 1; X2 = XC; X3 = XC + 1;
+                    Y1 = YC; Y2 = YC + 1; Y3 = YC + 1;
 					break;
-				case TileType.Empty: // zero
+                case TileType.Black: //new
+                    X1 = XC + 1; X2 = XC - 1; X3 = XC - 1;
+                    Y1 = YC + 1; Y2 = YC; Y3 = YC + 1;
+                    break;
+                case TileType.Pink: //new
+                    X1 = XC + 1; X2 = XC - 1; X3 = XC +1;
+                    Y1 = YC; Y2 = YC+1; Y3 = YC + 1;
+                    break;
+                case TileType.Empty: // zero
 					X3=X2=X1=XC=0;
 					Y3=Y2=Y1=YC=0;
 					break;
@@ -839,9 +855,9 @@ namespace Tetris
 		/// </summary>
 		public static Figure RandomFigure()
 		{
-			return new Figure((TileType)rnd.Next(1, 8));
+			return new Figure((TileType)rnd.Next(1, 10));
 		}
 	}
 	
-	public enum TileType { Empty, Red, Green, Blue, Yellow, Orange, Purple, LightBlue, Wall }
+	public enum TileType { Empty, Red, Green, Blue, Yellow, Orange, Purple, LightBlue, Black, Pink, Wall }
 }

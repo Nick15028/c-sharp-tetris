@@ -282,11 +282,11 @@ namespace Tetris
 				TetrisField.LightBlue=new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImLBLUE"));
 				TetrisField.Purple=new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImPURPLE"));
 				TetrisField.Yellow=new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImYELLOW"));
-				TetrisField.Orange=new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImORANGE"));
-				
-				PausedImage=new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImPAUSE"));
+				TetrisField.Orange=new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImORANGE"));                
+                PausedImage =new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImPAUSE"));
 				GameOverImage=new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImGAMEOVER"));
-			}
+                
+            }
 			catch(Exception ex)
 			{
 				MessageBox.Show(ex.Message, "Ошибка при загрузке изображений!");
@@ -341,6 +341,7 @@ namespace Tetris
             this.Controls.Clear();
             InitializeComponent();
         }
+
 
         void ПравилаToolStripMenuItemClick(object sender, EventArgs e)
 		{
