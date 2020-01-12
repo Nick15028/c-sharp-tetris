@@ -10,7 +10,9 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Resources;
+using System.Threading;
 using System.Windows.Forms;
+
 
 namespace Tetris
 {
@@ -31,6 +33,7 @@ namespace Tetris
 		
 		public MainForm()
 		{
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
 			Game=new TetrisGame();
 			Game.Score=0; Game.GameOver=true;
 			
@@ -169,14 +172,14 @@ namespace Tetris
 		}
 		
 		private static string[] Advices=new string[]
-		{
-			"Дождитесь, пока исчезнет индикатор вокруг изображения следующей фигуры, чтобы иметь возможность отложить фигуру!",
-			"Используйте клавишу Q, чтобы отложить фигуру и воспользоваться следующей",
-			"Вместе с количеством сброшенных фигур растёт и скорость игры",
-			"Чтобы попасть в таблицу рекордов, вы можете как набрать наибольшее количество очков, так и продержаться в игре дольше всех",
-			"Используйте клавишу F3, чтобы поставить игру на паузу",
-			"Решили начать новую игру? Нажмите F2, чтобы сделать это немедленно!"
-		};
+        {
+            "Wait until the indicator disappears around the image of the next figure to be able to defer the figure!",
+            "Use the Q key to postpone the shape and use the next",
+            "Along with the number of discarded pieces, the speed of the game grows,",
+            "To get into the high score table, you can either score the most points and stay in the game longer than anyone else,",
+            "Use the F3 key to pause the game,",
+            "Decided to start a new game? Press F2 to do it immediately!"
+        };
 		private void ShowAdvice(int advice)
 		{
 			AdviceLabel.Text=Advices[advice];
@@ -201,7 +204,7 @@ namespace Tetris
 			{
 				GF.MoveRight();
 			}
-			if(e.KeyData==Keys.Up || e.KeyData==Keys.W)
+			if(e.KeyData==Keys.Up || e.KeyData==Keys.Space)
 			{
 				if(GF.Drop())
 					SetScore(Game.Score+5);
@@ -211,11 +214,11 @@ namespace Tetris
 				if(GF.MoveDown())
 					SetScore(Game.Score+1);
 			}
-			if(e.KeyData==Keys.Space)
+			if(e.KeyData==Keys.W)
 			{
 				GF.RotateFigure();
 			}
-			
+			//儲存此方塊
 			if(e.KeyData==Keys.Q)
 			{
 				if(!Game.FigureChanged && GF.IsFigureFalling)
@@ -232,6 +235,11 @@ namespace Tetris
 					ShowAdvice(0);
 				}
 			}
+            //暫停
+            if(e.KeyData == Keys.P)
+            {
+                SetPause(!Game.Paused);
+            }
 			Refresh();
 		}
 
@@ -319,8 +327,22 @@ namespace Tetris
 		{
 			new AboutDialog().ShowDialog();
 		}
-		
-		void ПравилаToolStripMenuItemClick(object sender, EventArgs e)
+
+        private void EnglishToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
+            this.Controls.Clear();
+            InitializeComponent();
+        }
+
+        private void ChineseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("zh-TW");
+            this.Controls.Clear();
+            InitializeComponent();
+        }
+
+        void ПравилаToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			try
 			{
