@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Resources;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace Tetris
 {
@@ -468,7 +469,19 @@ namespace Tetris
 			Close();
 		}
 
-        
+        private void 中文ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("zh-TW");
+            this.Controls.Clear();
+            InitializeComponent();
+        }
+
+        private void 英文ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
+            this.Controls.Clear();
+            InitializeComponent();
+        }
 
         void ТаблицаРекордовToolStripMenuItemClick(object sender, EventArgs e)
 		{

@@ -119,31 +119,31 @@
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="новаяИграToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 26</value>
+    <value>224, 26</value>
   </data>
   <data name="новаяИграToolStripMenuItem.Text" xml:space="preserve">
     <value>新遊戲</value>
   </data>
   <data name="паузапродолжитьToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 26</value>
+    <value>224, 26</value>
   </data>
   <data name="паузапродолжитьToolStripMenuItem.Text" xml:space="preserve">
     <value>暫停/繼續</value>
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 6</value>
+    <value>221, 6</value>
   </data>
   <data name="таблицаРекордовToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 26</value>
+    <value>224, 26</value>
   </data>
   <data name="таблицаРекордовToolStripMenuItem.Text" xml:space="preserve">
     <value>高分表</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 6</value>
+    <value>221, 6</value>
   </data>
   <data name="выходToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 26</value>
+    <value>224, 26</value>
   </data>
   <data name="выходToolStripMenuItem.Text" xml:space="preserve">
     <value>退出</value>
@@ -154,65 +154,65 @@
   <data name="играToolStripMenuItem.Text" xml:space="preserve">
     <value>遊戲</value>
   </data>
-  <data name="правилаToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 26</value>
-  </data>
   <data name="правилаToolStripMenuItem.Text" xml:space="preserve">
     <value>規則</value>
-  </data>
-  <data name="обИгреToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 26</value>
   </data>
   <data name="обИгреToolStripMenuItem.Text" xml:space="preserve">
     <value>關於程序</value>
   </data>
-  <data name="englishToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>122, 26</value>
-  </data>
-  <data name="englishToolStripMenuItem.Text" xml:space="preserve">
-    <value>英文</value>
-  </data>
-  <data name="chineseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>122, 26</value>
-  </data>
-  <data name="chineseToolStripMenuItem.Text" xml:space="preserve">
+  <data name="中文ToolStripMenuItem.Text" xml:space="preserve">
     <value>中文</value>
   </data>
-  <data name="languegeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 26</value>
+  <data name="英文ToolStripMenuItem.Text" xml:space="preserve">
+    <value>英文</value>
   </data>
-  <data name="languegeToolStripMenuItem.Text" xml:space="preserve">
+  <data name="語言ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>224, 26</value>
+  </data>
+  <data name="語言ToolStripMenuItem.Text" xml:space="preserve">
     <value>語言</value>
   </data>
   <data name="справкаToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 23</value>
   </data>
   <data name="справкаToolStripMenuItem.Text" xml:space="preserve">
-    <value>幫忙</value>
+    <value>幫助</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
-    <value>時間已過去：</value>
+    <value>已過時間:</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>要點：</value>
+    <value>分數:</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>形狀重置：</value>
+    <value>形狀重置:</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
-    <value>開戶</value>
+    <value>分數</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
-    <value>下圖</value>
+    <value>下個形狀</value>
   </data>
   <data name="TipsCheckBox.Text" xml:space="preserve">
-    <value>小費</value>
+    <value>小計</value>
   </data>
-  <data name="AdviceLabel.Text" xml:space="preserve">
-    <value>使用Q鍵推遲形狀並使用以下命令</value>
+  <data name="label4.Text" xml:space="preserve">
+    <value>已過時間:</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>小費</value>
+  <data name="label8.Text" xml:space="preserve">
+    <value>分數:</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>形狀重置:</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>分數</value>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>下個形狀</value>
+  </data>
+  <data name="checkBox1.Text" xml:space="preserve">
+    <value>小計</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

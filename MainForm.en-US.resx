@@ -118,92 +118,71 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="новаяИграToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 26</value>
-  </data>
-  <data name="новаяИграToolStripMenuItem.Text" xml:space="preserve">
-    <value>New Game</value>
-  </data>
-  <data name="паузапродолжитьToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 26</value>
-  </data>
-  <data name="паузапродолжитьToolStripMenuItem.Text" xml:space="preserve">
-    <value>Stop/Continue</value>
-  </data>
-  <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 6</value>
-  </data>
-  <data name="таблицаРекордовToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 26</value>
-  </data>
-  <data name="таблицаРекордовToolStripMenuItem.Text" xml:space="preserve">
-    <value>HighScores</value>
-  </data>
-  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 6</value>
-  </data>
-  <data name="выходToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 26</value>
-  </data>
-  <data name="выходToolStripMenuItem.Text" xml:space="preserve">
-    <value>Quit</value>
-  </data>
   <data name="играToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>64, 23</value>
   </data>
   <data name="играToolStripMenuItem.Text" xml:space="preserve">
     <value>Game</value>
   </data>
+  <data name="справкаToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>92, 23</value>
+  </data>
+  <data name="справкаToolStripMenuItem.Text" xml:space="preserve">
+    <value>Reference</value>
+  </data>
+  <data name="новаяИграToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>236, 26</value>
+  </data>
+  <data name="новаяИграToolStripMenuItem.Text" xml:space="preserve">
+    <value>New game</value>
+  </data>
+  <data name="паузапродолжитьToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>236, 26</value>
+  </data>
+  <data name="паузапродолжитьToolStripMenuItem.Text" xml:space="preserve">
+    <value>Pause / Continue</value>
+  </data>
+  <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>233, 6</value>
+  </data>
+  <data name="таблицаРекордовToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>236, 26</value>
+  </data>
+  <data name="таблицаРекордовToolStripMenuItem.Text" xml:space="preserve">
+    <value>High score table</value>
+  </data>
+  <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>233, 6</value>
+  </data>
+  <data name="выходToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>236, 26</value>
+  </data>
+  <data name="выходToolStripMenuItem.Text" xml:space="preserve">
+    <value>Exit</value>
+  </data>
   <data name="правилаToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 26</value>
+    <value>226, 26</value>
   </data>
   <data name="правилаToolStripMenuItem.Text" xml:space="preserve">
     <value>Rules</value>
   </data>
   <data name="обИгреToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 26</value>
+    <value>226, 26</value>
   </data>
   <data name="обИгреToolStripMenuItem.Text" xml:space="preserve">
-    <value>About...</value>
+    <value>About the program</value>
   </data>
-  <data name="englishToolStripMenuItem.Text" xml:space="preserve">
-    <value>English</value>
+  <data name="語言ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>226, 26</value>
   </data>
-  <data name="chineseToolStripMenuItem.Text" xml:space="preserve">
+  <data name="語言ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="中文ToolStripMenuItem.Text" xml:space="preserve">
     <value>Chinese</value>
   </data>
-  <data name="languegeToolStripMenuItem.Text" xml:space="preserve">
-    <value>Languege</value>
-  </data>
-  <data name="справкаToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 23</value>
-  </data>
-  <data name="справкаToolStripMenuItem.Text" xml:space="preserve">
-    <value>Help</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Time：</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Key points:</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>Shape reset:</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>State</value>
-  </data>
-  <data name="groupBox2.Text" xml:space="preserve">
-    <value>Next</value>
-  </data>
-  <data name="TipsCheckBox.Text" xml:space="preserve">
-    <value>Tip</value>
-  </data>
-  <data name="AdviceLabel.Text" xml:space="preserve">
-    <value>Use Q to postpone the shape and use the following command</value>
-  </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Tip</value>
+  <data name="英文ToolStripMenuItem.Text" xml:space="preserve">
+    <value>English</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
