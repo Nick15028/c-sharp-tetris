@@ -48,3 +48,7 @@ C:\Users\User\Desktop\oop\c-sharp-tetris\obj\Debug\en-US\Tetris.resources.dll
 C:\Users\User\Desktop\oop\c-sharp-tetris\obj\Debug\zh-TW\Tetris.resources.dll
 C:\Users\User\Desktop\oop\c-sharp-tetris\obj\Debug\Tetris.NewRecordDialog.en-US.resources
 C:\Users\User\Desktop\oop\c-sharp-tetris\obj\Debug\Tetris.NewRecordDialog.zh-TW.resources
+C:\Users\User\Desktop\oop\c-sharp-tetris\obj\Debug\Tetris.AboutDialog.en-US.resources
+C:\Users\User\Desktop\oop\c-sharp-tetris\obj\Debug\Tetris.AboutDialog.zh-TW.resources
+C:\Users\User\Desktop\oop\c-sharp-tetris\obj\Debug\Tetris.RecordsForm.en-US.resources
+C:\Users\User\Desktop\oop\c-sharp-tetris\obj\Debug\Tetris.RecordsForm.zh-TW.resources

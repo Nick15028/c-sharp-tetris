@@ -117,12 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ScoresTabPage.Text" xml:space="preserve">
-    <value>依分數</value>
-  </data>
-  <data name="TimesTabPage.Text" xml:space="preserve">
-    <value>依時間</value>
-  </data>
   <data name="label1.Text" xml:space="preserve">
     <value>得分最高的玩家：</value>
   </data>
@@ -133,10 +127,13 @@
     <value>分數</value>
   </data>
   <data name="columnHeader3.Text" xml:space="preserve">
-    <value>時間</value>
+    <value>總時間</value>
   </data>
   <data name="columnHeader4.Text" xml:space="preserve">
     <value>日期</value>
+  </data>
+  <data name="ScoresTabPage.Text" xml:space="preserve">
+    <value>依分數</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>持續時間最長的玩家：</value>
@@ -148,10 +145,13 @@
     <value>分數</value>
   </data>
   <data name="columnHeader7.Text" xml:space="preserve">
-    <value>時間</value>
+    <value>總時間</value>
   </data>
   <data name="columnHeader8.Text" xml:space="preserve">
     <value>日期</value>
+  </data>
+  <data name="TimesTabPage.Text" xml:space="preserve">
+    <value>依時間</value>
   </data>
   <data name="button1.Text" xml:space="preserve">
     <value>再玩一場!</value>

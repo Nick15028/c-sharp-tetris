@@ -71,7 +71,7 @@ namespace Tetris
             //
 
             Game.StateChanged+=new EventHandler(Game_StateChanged);
-			
+			Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-US");
 			InitializeComponent();
 			
 		}

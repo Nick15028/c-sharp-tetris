@@ -36,6 +36,7 @@ namespace Tetris
 		/// </summary>
 		private void InitializeComponent()
 		{
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RecordsForm));
             this.ListsTabControl = new System.Windows.Forms.TabControl();
             this.ScoresTabPage = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
@@ -60,44 +61,29 @@ namespace Tetris
             // 
             // ListsTabControl
             // 
-            this.ListsTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.ListsTabControl, "ListsTabControl");
             this.ListsTabControl.Controls.Add(this.ScoresTabPage);
             this.ListsTabControl.Controls.Add(this.TimesTabPage);
-            this.ListsTabControl.Location = new System.Drawing.Point(12, 11);
+            this.ListsTabControl.HotTrack = true;
             this.ListsTabControl.Name = "ListsTabControl";
             this.ListsTabControl.SelectedIndex = 0;
-            this.ListsTabControl.Size = new System.Drawing.Size(498, 340);
-            this.ListsTabControl.TabIndex = 0;
             // 
             // ScoresTabPage
             // 
+            resources.ApplyResources(this.ScoresTabPage, "ScoresTabPage");
             this.ScoresTabPage.Controls.Add(this.label1);
             this.ScoresTabPage.Controls.Add(this.ScoresListView);
-            this.ScoresTabPage.Location = new System.Drawing.Point(4, 22);
             this.ScoresTabPage.Name = "ScoresTabPage";
-            this.ScoresTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.ScoresTabPage.Size = new System.Drawing.Size(490, 314);
-            this.ScoresTabPage.TabIndex = 0;
-            this.ScoresTabPage.Text = "On points";
             this.ScoresTabPage.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.Location = new System.Drawing.Point(6, 3);
+            resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(478, 21);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Players with the most points:\r\n";
             // 
             // ScoresListView
             // 
-            this.ScoresListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.ScoresListView, "ScoresListView");
             this.ScoresListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
@@ -106,60 +92,42 @@ namespace Tetris
             this.ScoresListView.FullRowSelect = true;
             this.ScoresListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.ScoresListView.HideSelection = false;
-            this.ScoresListView.Location = new System.Drawing.Point(6, 27);
             this.ScoresListView.Name = "ScoresListView";
-            this.ScoresListView.Size = new System.Drawing.Size(478, 284);
-            this.ScoresListView.TabIndex = 0;
             this.ScoresListView.UseCompatibleStateImageBehavior = false;
             this.ScoresListView.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader1
             // 
-            this.columnHeader1.Text = "Player";
-            this.columnHeader1.Width = 84;
+            resources.ApplyResources(this.columnHeader1, "columnHeader1");
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "Score";
-            this.columnHeader2.Width = 72;
+            resources.ApplyResources(this.columnHeader2, "columnHeader2");
             // 
             // columnHeader3
             // 
-            this.columnHeader3.Text = "Play time";
-            this.columnHeader3.Width = 99;
+            resources.ApplyResources(this.columnHeader3, "columnHeader3");
             // 
             // columnHeader4
             // 
-            this.columnHeader4.Text = "date";
-            this.columnHeader4.Width = 107;
+            resources.ApplyResources(this.columnHeader4, "columnHeader4");
             // 
             // TimesTabPage
             // 
+            resources.ApplyResources(this.TimesTabPage, "TimesTabPage");
             this.TimesTabPage.Controls.Add(this.label2);
             this.TimesTabPage.Controls.Add(this.TimesListView);
-            this.TimesTabPage.Location = new System.Drawing.Point(4, 22);
             this.TimesTabPage.Name = "TimesTabPage";
-            this.TimesTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.TimesTabPage.Size = new System.Drawing.Size(490, 314);
-            this.TimesTabPage.TabIndex = 1;
-            this.TimesTabPage.Text = "By time";
             this.TimesTabPage.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.Location = new System.Drawing.Point(6, 3);
+            resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(478, 21);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Players lasting the most time:";
             // 
             // TimesListView
             // 
-            this.TimesListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.TimesListView, "TimesListView");
             this.TimesListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader5,
             this.columnHeader6,
@@ -168,73 +136,54 @@ namespace Tetris
             this.TimesListView.FullRowSelect = true;
             this.TimesListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.TimesListView.HideSelection = false;
-            this.TimesListView.Location = new System.Drawing.Point(6, 27);
             this.TimesListView.Name = "TimesListView";
-            this.TimesListView.Size = new System.Drawing.Size(478, 286);
-            this.TimesListView.TabIndex = 2;
             this.TimesListView.UseCompatibleStateImageBehavior = false;
             this.TimesListView.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader5
             // 
-            this.columnHeader5.Text = "Player";
-            this.columnHeader5.Width = 84;
+            resources.ApplyResources(this.columnHeader5, "columnHeader5");
             // 
             // columnHeader6
             // 
-            this.columnHeader6.DisplayIndex = 2;
-            this.columnHeader6.Text = "Score";
-            this.columnHeader6.Width = 72;
+            resources.ApplyResources(this.columnHeader6, "columnHeader6");
             // 
             // columnHeader7
             // 
-            this.columnHeader7.DisplayIndex = 1;
-            this.columnHeader7.Text = "Play time";
-            this.columnHeader7.Width = 99;
+            resources.ApplyResources(this.columnHeader7, "columnHeader7");
             // 
             // columnHeader8
             // 
-            this.columnHeader8.Text = "date";
-            this.columnHeader8.Width = 107;
+            resources.ApplyResources(this.columnHeader8, "columnHeader8");
             // 
             // button1
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(430, 357);
+            resources.ApplyResources(this.button1, "button1");
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(80, 21);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Play more!";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1Click);
             // 
             // linkLabel1
             // 
+            resources.ApplyResources(this.linkLabel1, "linkLabel1");
             this.linkLabel1.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.linkLabel1.LinkColor = System.Drawing.Color.Teal;
-            this.linkLabel1.Location = new System.Drawing.Point(22, 361);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(58, 25);
-            this.linkLabel1.TabIndex = 2;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Close";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkLabel1LinkClicked);
             // 
             // RecordsForm
             // 
             this.AcceptButton = this.button1;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.linkLabel1;
-            this.ClientSize = new System.Drawing.Size(522, 389);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.ListsTabControl);
             this.MaximizeBox = false;
             this.Name = "RecordsForm";
             this.ShowIcon = false;
-            this.Text = "High score table";
             this.ListsTabControl.ResumeLayout(false);
             this.ScoresTabPage.ResumeLayout(false);
             this.TimesTabPage.ResumeLayout(false);

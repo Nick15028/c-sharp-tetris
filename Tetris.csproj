@@ -95,7 +95,13 @@
     <Compile Include="TetrisGame.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AboutDialog.en-US.resx">
+      <DependentUpon>AboutDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AboutDialog.resx">
+      <DependentUpon>AboutDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AboutDialog.zh-TW.resx">
       <DependentUpon>AboutDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.en-US.resx">
@@ -116,7 +122,13 @@
     <EmbeddedResource Include="NewRecordDialog.zh-TW.resx">
       <DependentUpon>NewRecordDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RecordsForm.en-US.resx">
+      <DependentUpon>RecordsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RecordsForm.resx">
+      <DependentUpon>RecordsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RecordsForm.zh-TW.resx">
       <DependentUpon>RecordsForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

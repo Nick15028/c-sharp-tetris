@@ -336,13 +336,13 @@
     <value>作者的聯繫人：Ivanov Nikita</value>
   </data>
   <data name="button1.Text" xml:space="preserve">
-    <value>關門</value>
+    <value>關閉</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>在MEPhI製造</value>
   </data>
   <data name="linkLabel2.Text" xml:space="preserve">
-    <value>應用程序圖標 - Everaldo Coelho</value>
+    <value>應用程序圖標-Everaldo Coelho</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>關於程序</value>
