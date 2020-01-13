@@ -157,6 +157,12 @@
     <EmbeddedResource Include="Images\yellow.png">
       <LogicalName>ImYELLOW</LogicalName>
     </EmbeddedResource>
+    <EmbeddedResource Include="Images\black.png">
+      <LogicalName>ImBLACK</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Images\pink.png">
+      <LogicalName>ImPINK</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Images\pause.png">

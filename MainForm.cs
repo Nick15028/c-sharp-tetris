@@ -430,8 +430,10 @@ namespace Tetris
 				TetrisField.Purple=new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImPURPLE"));
 				TetrisField.Yellow=new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImYELLOW"));
 				TetrisField.Orange=new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImORANGE"));
-				
-				PausedImage=new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImPAUSE"));
+                TetrisField.Black = new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImBLACK"));
+                TetrisField.Pink = new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImPINK"));
+
+                PausedImage =new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImPAUSE"));
 				GameOverImage=new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImGAMEOVER"));
 			}
 			catch(Exception ex)

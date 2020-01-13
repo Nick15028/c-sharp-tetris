@@ -854,7 +854,7 @@ namespace Tetris
 		/// </summary>
 		public static Figure RandomFigure()
 		{
-			return new Figure((TileType)rnd.Next(1, 9));
+			return new Figure((TileType)rnd.Next(1, 10));
 		}
 	}
 	
